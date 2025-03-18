@@ -1,0 +1,66 @@
+from tkinter import *
+from math import *
+from random import *
+from time import sleep
+
+def color():
+    c='#'
+    for i in range(3):
+        c+=hex(randint(16,255))[2:]
+    return c
+
+H=1080
+W=1920
+
+tissu=Canvas(height=H,width=W,bg=color())
+
+tissu.pack()
+
+
+def sgt(x,y,r,theta):
+    X=r*cos(theta)+x
+    Y=r*sin(theta)+y
+    tissu.create_line(x,y,X,Y,fill=color())
+    return X,Y
+x=0
+y=0
+r=50
+theta=0
+def triangle(x,y,r,theta):
+    for i in range(3):
+        x,y=sgt(x,y,r,theta)
+        theta+=2*pi/3
+
+def hexagone(x,y,r,theta):
+    for i in range(6):
+        x,y=sgt(x,y,r,theta)
+        theta+=2*pi/6
+def quatre_vingtgone(x,y,r,theta):
+    for i in range(randint(1,800)):
+        x,y=sgt(x,y,r,theta)
+        theta+=pi*2/randint(2, 30)
+def plateau(x,y,r,theta):
+    for _ in range(H//r*2):
+        for _ in range(W//r*2):
+            triangle(x,y,r,theta)
+            x+=r*2
+        x=0
+        y+=r*2
+##triangle(x,y,r,theta)
+##hexagone(x,y,r,theta)
+##quatre_vingtgone(x,y,r,theta)
+
+
+plateau(x,y,r,theta)
+
+while True:
+    x=randint(0,W)
+    y=randint(0,H)
+    X=randint(0,W)
+    Y=randint(0,H)
+    XX=randint(0,W)
+    YY=randint(0,H)
+    tissu.create_polygon(x,y,X,Y,x+X,y+Y,fill=color())
+    tissu.update()
+    sleep(0.2)
+    tissu.delete(ALL)
