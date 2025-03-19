@@ -1,0 +1,78 @@
+from tkinter import *
+from math import *
+from random import *
+from time import sleep
+
+def color():
+    c='#'
+    for i in range(3):
+        c+=hex(randint(16,255))[2:]
+    return c
+
+H=1080
+W=1920
+
+tissu=Canvas(height=H,width=W,bg="black")
+
+def sgt(x,y,r,theta):
+    X=r*cos(theta)+x
+    Y=r*sin(theta)+y
+    tissu.create_line(x+W/2,y+H/2,X+W/2,Y+H/2,fill=color())
+    return X,Y
+x=0
+y=0
+r=2
+theta=0
+
+def triangle(x,y,r,theta):
+    for i in range(3):
+        x,y=sgt(x,y,r,theta)
+        theta+=2*pi/3
+
+def hexagone(x,y,r,theta):
+    for i in range(6):
+        x,y=sgt(x,y,r,theta)
+        theta+=2*pi/6
+def quatre_vingtgone(x,y,r,theta):
+    for i in range(randint(1,800)):
+        x,y=sgt(x,y,r,theta)
+        theta+=pi*2/randint(2, 30)
+def plateau(x,y,r,theta):
+    for _ in range(H//r*2):
+        for _ in range(W//r*2):
+            triangle(x,y,r,theta)
+            x+=r*2
+        x=0
+        y+=r*2
+def point(x,y,color):
+  tissu.create_line(x, y, x+1, y,fill=color)
+
+def fonction_cos(x):
+  y=cos(x/W*tau)*H/3
+  return y
+def fonction_sin(x):
+  y=sin(x/W*tau)*H/3
+  return y
+def dessiner_fonction_cos():
+  for x in range(W):
+    Y=fonction_cos(x)
+    point(x,H-H/2-Y,"#FF0000")
+def dessiner_fonction_sin():
+    for x in range(W):
+        Y=fonction_sin(x)
+        point(x,H-H/2-Y,"#DDDDFF")
+def cercle(x,y,r,theta):
+  n=200
+  R=n*r/2/pi
+  y=y-R
+  for i in range(n):
+    x,y=sgt(x,y,r,theta)
+    theta+=2*pi/n  
+##triangle(x,y,r,theta)
+##hexagone(x,y,r,theta)
+##quatre_vingtgone(x,y,r,theta)
+
+dessiner_fonction_cos()
+dessiner_fonction_sin()
+tissu.pack()
+#si pas idle tissu.mainloop()
