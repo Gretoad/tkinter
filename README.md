@@ -15,5 +15,5 @@ A little animation with cos, sin, and tan fonctions !
 ### tkinter_triangle.py
 Triangle.
 
-### tktab.py
+### tktab.py
 Fire !
