@@ -7,7 +7,7 @@ It's a simple square which bounces on walls and changes his color
 A classical maze generator
 
 ### labytk_final.py
-A classical maze generator but with colors and... final ?
+A classical maze generator but with colors...
 
 ### tkinter_cos_sin.py
 A little animation with cos, sin, and tan fonctions !
