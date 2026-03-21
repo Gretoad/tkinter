@@ -1,4 +1,4 @@
-# Here, there are some mini-projects make in python with Tkinter
+# Here, there are some mini-projects make in python with Tkinter (they are my first projects)
 
 ### dvd.py
 It's a simple square which bounces on walls and changes his color
@@ -14,6 +14,3 @@ A little animation with cos, sin, and tan fonctions !
 
 ### tkinter_triangle.py
 Triangle.
-
-### tktab.py
-Fire !
